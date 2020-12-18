@@ -1,7 +1,11 @@
-import React, { useState, useHistory } from "react";
+import React, { useState, useEffect } from "react";
 import { Switch, Route, Link } from 'react-router-dom';
 import Form from './components/Form'
+import Success from './components/Success'
+import schema from './validation/schema';
+import * as yup from 'yup';
 import styled from 'styled-components';
+
 
 const initialFormValues = {
   name:"",
@@ -50,45 +54,63 @@ const App = () => {
   }
 
   const onChange = ( name, value ) => {
-    // yup
-    //   .reach(schema, name)
-    //   .validate(value)
-    //   .then(() => {
-    //     setFormErrors({
-    //       ...formErrors,
-    //       [ name ] : "",
-    //     })
-    //   })
-    //   .catch(err => {
-    //     setFormErrors({
-    //       ...formErrors,
-    //       [name] : err.errors[0],
-    //     })
-    //   })
+    yup
+      .reach(schema, name)
+      .validate(value)
+      .then(() => {
+        setFormErrors({
+          ...formErrors,
+          [ name ] : "",
+        })
+      })
+      .catch(err => {
+        setFormErrors({
+          ...formErrors,
+          [name] : err.errors[0],
+        })
+      })
     
       setFormValues({ ...formValues, [name]:value })
   }
 
+  useEffect(() => {
+    schema.isValid(formValues).then((valid) => {
+      setIsDisabled(!valid)
+    });
+  },[formValues])
+
+  const StyledApp = styled.div `
+    display:flex;
+    flex-flow: column nowrap;
+    align-items:center;
+    background:url("https://get.wallhere.com/photo/pizza-food-mushroom-tomatoes-basil-Garlic-olives-1562211.jpg");
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+    min-height: 100vh;
+    
+  `
+
   return (
-    <>
-    <header className="header">
-      {/* logo maybe */}
-      <h1>🏰 Nate's Pizza Palace 🏰</h1>
-    </header>
-    <Link to="/form"><button>Ready To Dine Like King</button></Link>
-    <Switch>
-      <Route path="/form">
-        <Form
-         values={formValues}
-         onChange={onChange}
-         onSubmit={onSubmit}
-         errors={formErrors}
-         disabled={isDisabled}
-         printout={pizza}
-        />
-      </Route>
-    </Switch>
-    </>
+    <StyledApp className="app">
+        <h1>🏰 Nate's Pizza Palace 🏰</h1>
+      <Link to="/form"><button className="pizza-btn">Ready To Dine Like King</button></Link>
+      <Switch>
+        <Route path="/form">
+          <Form
+          values={formValues}
+          onChange={onChange}
+          onSubmit={onSubmit}
+          errors={formErrors}
+          disabled={isDisabled}
+          printout={pizza}
+          />
+        </Route>
+        <Route path="/success">
+          <Success printout={pizza}/>
+        </Route>
+      </Switch>
+    </StyledApp>
   );
 };
 export default App;

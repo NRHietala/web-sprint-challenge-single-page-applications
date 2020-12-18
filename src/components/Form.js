@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useHistory } from 'react';
 import { Link, Route } from 'react-router-dom';
 
 function Form(props) {
   const { values, onChange, onSubmit, errors, disabled, printout } = props;
+
+
 
   const change = event => {
     const { name, value, type, checked } = event.target;
@@ -14,11 +16,12 @@ function Form(props) {
     event.preventDefault();
     onSubmit();
   }
-
-
+  
   return (
     <div>
       <h2>Pizza Fit For A Prince, But Priced For A Peasant!</h2>
+      <div>{errors.name}</div>
+      <div>{errors.size}</div>
       <form onSubmit={submit}>
         <label>Customer Name
           <input 
@@ -45,7 +48,7 @@ function Form(props) {
           name="cheese"
           id='cheese'
           onChange={change}
-          value={values.cheese}
+          checked={values.cheese}
           />
           </label>
           <label>Ham
@@ -54,7 +57,7 @@ function Form(props) {
           name="ham"
           id='ham'
           onChange={change}
-          value={values.ham}
+          checked={values.ham}
           />
           </label>
           <label>Pineapple
@@ -63,7 +66,7 @@ function Form(props) {
           name="pineapple"
           id='pineapple'
           onChange={change}
-          value={values.pineapple}
+          checked={values.pineapple}
           />
           </label>
           <label>Chicken
@@ -72,20 +75,21 @@ function Form(props) {
           name="chicken"
           id='chicken'
           onChange={change}
-          value={values.chicken}
+          checked={values.chicken}
           />
         </label>
         <br/>
         {/* dont forget to disable button */}
-        <button>Let's get that pizza cooking!</button>
+        <button disabled={disabled}>Let's get that pizza cooking!</button>
       </form>
-      {printout.name && printout.name ? <h2>Pizza for: {printout.name}</h2>: null}
-      {printout.size && printout.size ? <h2>Size: {printout.size}</h2>: null}
-      {printout.cheese && printout.cheese ? <h3>Cheese</h3>: null}
-      {printout.ham && printout.ham ? <h3>Ham</h3>: null}
-      {printout.pineapple && printout.pineapple ? <h3>Pineapple</h3> : null}
-      {printout.chicken && printout.chicken ? <h3>Chicken</h3>:null}
-      
+      <div className="pizza-printout">
+          {printout.name && printout.name ? <h2>Pizza for: {printout.name}</h2>: null}
+          {printout.size && printout.size ? <h2>Size: {printout.size}</h2>: null}
+          {printout.cheese && printout.cheese ? <h3>Cheese</h3>: null}
+          {printout.ham && printout.ham ? <h3>Ham</h3>: null}
+          {printout.pineapple && printout.pineapple ? <h3>Pineapple</h3> : null}
+          {printout.chicken && printout.chicken ? <h3>Chicken</h3>:null}
+      </div>
     </div>
   )
 }
