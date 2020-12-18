@@ -92,19 +92,24 @@ const App = () => {
     h1 {
       font-size: 4rem;
       color: maroon;
+      background:black;
     }
 
     .pizza-btn {
       padding: 10px;
       position: abosoute;
-      margin-top: 100px;
+      margin-top: 300px;
+    }
+
+    a {
+      text-decoration:none;
     }
     
   `
 
   return (
     <StyledApp className="app">
-        <h1>🏰 Nate's Pizza Palace 🏰</h1>
+        <Link to="/"><h1>🏰 Nate's Pizza Palace 🏰</h1></Link>
       <Switch>
         <Route path="/form">
           <Form
@@ -116,11 +121,8 @@ const App = () => {
           printout={pizza}
           />
         </Route>
-        <Route path="/success">
-          <Success printout={pizza}/>
-        </Route>
       </Switch>
-      <Link to="/form"><button className="pizza-btn">Ready To Dine Like King</button></Link>
+      <Link to="/form"><button className="pizza-btn">👑Ready To Dine Like Royalty?👑</button></Link>
     </StyledApp>
   );
 };
