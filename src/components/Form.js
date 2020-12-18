@@ -1,5 +1,4 @@
-import React, { useHistory } from 'react';
-import { Link, Route } from 'react-router-dom';
+import React from 'react';
 import styled from 'styled-components';
 import Success from './Success';
 

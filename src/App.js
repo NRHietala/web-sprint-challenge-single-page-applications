@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Switch, Route, Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import Form from './components/Form'
-import Success from './components/Success'
 import Header from './components/Header'
 import schema from './validation/schema';
 import axios from 'axios';
@@ -124,9 +123,11 @@ const App = () => {
   `
 
   return (
+    <>
     <StyledApp className="app">
+      {/* <header><h1>🏰 Nate's Pizza Palace 🏰</h1></header> */}
         <Header />
-        <Route exact path="/form">
+        <Route path="/form">
           <Form
           values={formValues}
           onChange={onChange}
@@ -138,6 +139,7 @@ const App = () => {
         </Route>
       <Link to="/form"><button className="pizza-btn">👑Ready To Dine Like Royalty?👑</button></Link>
     </StyledApp>
+    </>
   );
 };
 export default App;
