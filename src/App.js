@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Switch, Route, Link } from 'react-router-dom';
 import Form from './components/Form'
 import Success from './components/Success'
+import Header from './components/Header'
 import schema from './validation/schema';
 import axios from 'axios';
 import * as yup from 'yup';
@@ -28,6 +29,7 @@ const initialFormErrors = {
 
 const initialPizzaValue = [];
 const initialDisabled = true;
+
 
 const App = () => {
   const [ formValues, setFormValues ] = useState(initialFormValues);
@@ -123,9 +125,8 @@ const App = () => {
 
   return (
     <StyledApp className="app">
-        <Link to="/"><h1>🏰 Nate's Pizza Palace 🏰</h1></Link>
-      <Switch>
-        <Route path="/form">
+        <Header />
+        <Route exact path="/form">
           <Form
           values={formValues}
           onChange={onChange}
@@ -135,7 +136,6 @@ const App = () => {
           printout={pizza}
           />
         </Route>
-      </Switch>
       <Link to="/form"><button className="pizza-btn">👑Ready To Dine Like Royalty?👑</button></Link>
     </StyledApp>
   );

@@ -7,7 +7,6 @@ function Form(props) {
   const { values, onChange, onSubmit, errors, disabled, printout } = props;
 
 
-
   const change = event => {
     const { name, value, type, checked } = event.target;
     const valueToUse = type === 'checkbox' ? checked : value;
@@ -102,7 +101,7 @@ function Form(props) {
         {/* dont forget to disable button */}
         <button disabled={disabled} className="submit-btn">Let's get that pizza cooking!</button>
       </form>
-      <Success printout={printout}/>
+        <Success printout={printout}/>
     </StyledForm>
   )
 }
