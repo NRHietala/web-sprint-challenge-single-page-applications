@@ -3,8 +3,10 @@ import { Switch, Route, Link } from 'react-router-dom';
 import Form from './components/Form'
 import Success from './components/Success'
 import schema from './validation/schema';
+import axios from 'axios';
 import * as yup from 'yup';
 import styled from 'styled-components';
+
 
 
 const initialFormValues = {
@@ -40,6 +42,17 @@ const App = () => {
     return setPizza(formValues)
   }
 
+  const logNewPizza = (newPizza) => {
+    axios.post("https://reqres.in/", newPizza)
+    .then(res => {
+      setPizza([res.data, ...pizza])
+      setFormValues(initialFormValues);
+    })
+    .catch(err => {
+      console.log(err)
+    });
+  };
+
   const onSubmit = () => {
     const newPizza = {
       name:formValues.name.trim(),
@@ -50,6 +63,7 @@ const App = () => {
       chicken:formValues.chicken
     }
     pizzaPrintout(newPizza)
+    logNewPizza(newPizza)
     setFormValues(initialFormValues)
   }
 
