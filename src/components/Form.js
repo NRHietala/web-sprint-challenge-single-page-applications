@@ -1,5 +1,7 @@
 import React, { useHistory } from 'react';
 import { Link, Route } from 'react-router-dom';
+import styled from 'styled-components';
+import Success from './Success';
 
 function Form(props) {
   const { values, onChange, onSubmit, errors, disabled, printout } = props;
@@ -17,8 +19,26 @@ function Form(props) {
     onSubmit();
   }
   
+  const StyledForm = styled.div`
+    display:flex;
+    flex-flow: column nowrap;
+    align-items:center;
+    background: rgba(215,215,115,.75);
+    border: 2px solid black;
+    padding: 30px;
+
+    form {
+      display:flex;
+      flex-flow:column nowrap;
+      align-items:center;
+    }
+    .submit-btn {
+      padding: 10px;
+    }
+
+  `
   return (
-    <div>
+    <StyledForm className="form-container">
       <h2>Pizza Fit For A Prince, But Priced For A Peasant!</h2>
       <div>{errors.name}</div>
       <div>{errors.size}</div>
@@ -80,17 +100,10 @@ function Form(props) {
         </label>
         <br/>
         {/* dont forget to disable button */}
-        <button disabled={disabled}>Let's get that pizza cooking!</button>
+        <button disabled={disabled} className="submit-btn">Let's get that pizza cooking!</button>
       </form>
-      <div className="pizza-printout">
-          {printout.name && printout.name ? <h2>Pizza for: {printout.name}</h2>: null}
-          {printout.size && printout.size ? <h2>Size: {printout.size}</h2>: null}
-          {printout.cheese && printout.cheese ? <h3>Cheese</h3>: null}
-          {printout.ham && printout.ham ? <h3>Ham</h3>: null}
-          {printout.pineapple && printout.pineapple ? <h3>Pineapple</h3> : null}
-          {printout.chicken && printout.chicken ? <h3>Chicken</h3>:null}
-      </div>
-    </div>
+      <Success printout={printout}/>
+    </StyledForm>
   )
 }
 

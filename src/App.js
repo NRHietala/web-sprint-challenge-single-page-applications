@@ -83,18 +83,28 @@ const App = () => {
     display:flex;
     flex-flow: column nowrap;
     align-items:center;
-    background:url("https://get.wallhere.com/photo/pizza-food-mushroom-tomatoes-basil-Garlic-olives-1562211.jpg");
+    background:url("http://junior.rockyspizzeria.mx/wp-content/uploads/2017/08/Ollies-Pizza-Background-3.png");
     background-position:center;
     background-repeat:no-repeat;
     background-size:cover;
     min-height: 100vh;
+
+    h1 {
+      font-size: 4rem;
+      color: maroon;
+    }
+
+    .pizza-btn {
+      padding: 10px;
+      position: abosoute;
+      margin-top: 100px;
+    }
     
   `
 
   return (
     <StyledApp className="app">
         <h1>🏰 Nate's Pizza Palace 🏰</h1>
-      <Link to="/form"><button className="pizza-btn">Ready To Dine Like King</button></Link>
       <Switch>
         <Route path="/form">
           <Form
@@ -110,6 +120,7 @@ const App = () => {
           <Success printout={pizza}/>
         </Route>
       </Switch>
+      <Link to="/form"><button className="pizza-btn">Ready To Dine Like King</button></Link>
     </StyledApp>
   );
 };
