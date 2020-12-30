@@ -9,7 +9,7 @@ function Header() {
 
   return (
     <div>
-      <Link to="/"><h1><span role='img' alt="castle">🏰</span> Nate's Pizza Palace <span role='img' alt='castle'>🏰</span></h1></Link>
+      <Link to="/"><h1><span role='img' alt="castle">🏰</span> Nate's Pizza Palace <span role='img' alt='castle'>🏰</span></h1></Link> 
     </div>
   )
 }

@@ -2,6 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 import Success from './Success';
 
+const StyledForm = styled.div`
+display:flex;
+flex-flow: column nowrap;
+align-items:center;
+background: rgba(215,215,115,.75);
+border: 2px solid black;
+padding: 30px;
+
+form {
+  display:flex;
+  flex-flow:column nowrap;
+  align-items:center;
+  text-align:center;
+}
+.submit-btn {
+  padding: 10px;
+}
+
+`
+
 function Form(props) {
   const { values, onChange, onSubmit, errors, disabled, printout } = props;
 
@@ -17,24 +37,7 @@ function Form(props) {
     onSubmit();
   }
   
-  const StyledForm = styled.div`
-    display:flex;
-    flex-flow: column nowrap;
-    align-items:center;
-    background: rgba(215,215,115,.75);
-    border: 2px solid black;
-    padding: 30px;
-
-    form {
-      display:flex;
-      flex-flow:column nowrap;
-      align-items:center;
-    }
-    .submit-btn {
-      padding: 10px;
-    }
-
-  `
+ 
   return (
     <StyledForm className="form-container">
       <h2>Pizza Fit For A Prince, But Priced For A Peasant!</h2>
@@ -94,6 +97,16 @@ function Form(props) {
           id='chicken'
           onChange={change}
           checked={values.chicken}
+          />
+        </label>
+        <label> Special instructions
+          <br/>
+        <input 
+          type="text"
+          name="instructions"
+          id="instructions"
+          onChange={change}
+          value={values.instructions}
           />
         </label>
         <br/>

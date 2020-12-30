@@ -29,6 +29,33 @@ const initialFormErrors = {
 const initialPizzaValue = [];
 const initialDisabled = true;
 
+const StyledApp = styled.div `
+    display:flex;
+    flex-flow: column nowrap;
+    align-items:center;
+    background:url("http://junior.rockyspizzeria.mx/wp-content/uploads/2017/08/Ollies-Pizza-Background-3.png");
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+    min-height: 100vh;
+
+    h1 {
+      font-size: 4rem;
+      color: maroon;
+      background:black;
+    }
+
+    .pizza-btn {
+      padding: 10px;
+      position: abosoute;
+      margin-top: 200px;
+    }
+
+    a {
+      text-decoration:none;
+    }
+    
+  `
 
 const App = () => {
   const [ formValues, setFormValues ] = useState(initialFormValues);
@@ -94,38 +121,9 @@ const App = () => {
     });
   },[formValues])
 
-  const StyledApp = styled.div `
-    display:flex;
-    flex-flow: column nowrap;
-    align-items:center;
-    background:url("http://junior.rockyspizzeria.mx/wp-content/uploads/2017/08/Ollies-Pizza-Background-3.png");
-    background-position:center;
-    background-repeat:no-repeat;
-    background-size:cover;
-    min-height: 100vh;
-
-    h1 {
-      font-size: 4rem;
-      color: maroon;
-      background:black;
-    }
-
-    .pizza-btn {
-      padding: 10px;
-      position: abosoute;
-      margin-top: 300px;
-    }
-
-    a {
-      text-decoration:none;
-    }
-    
-  `
 
   return (
-    <>
     <StyledApp className="app">
-      {/* <header><h1>🏰 Nate's Pizza Palace 🏰</h1></header> */}
         <Header />
         <Route path="/form">
           <Form
@@ -137,9 +135,8 @@ const App = () => {
           printout={pizza}
           />
         </Route>
-      <Link to="/form"><button className="pizza-btn">👑Ready To Dine Like Royalty?👑</button></Link>
+      <Link to="/form"><button className="pizza-btn"><span role='img' alt='crown'>👑</span>Ready To Dine Like Royalty?<span role='img' alt='crown'>👑</span></button></Link>
     </StyledApp>
-    </>
   );
 };
 export default App;
